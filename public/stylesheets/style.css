@@ -1,0 +1,142 @@
+html {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box; }
+  html body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #000;
+    font-family: 'Open Sans', sans-serif, Verdana, Arial, Helvetica, sans-serif; }
+    html body hr {
+      display: none; }
+    html body form {
+      margin: 0;
+      padding: 0; }
+    html body div {
+      margin: 0;
+      padding: 0;
+      border: 0; }
+    html body img {
+      margin: 0;
+      padding: 0;
+      border: none; }
+    html body h1, html body h2, html body h3, html body h4, html body h5 {
+      margin: 0;
+      padding: 0; }
+    html body ul, html body li {
+      margin: 0;
+      padding: 0;
+      list-style: none; }
+    html body a {
+      text-decoration: none;
+      color: inherit; }
+
+*, :after, :before {
+  box-sizing: inherit; }
+
+.button {
+  text-transform: uppercase; }
+
+#root {
+  height: 100%; }
+
+.answer-it {
+  height: 100%;
+  font-size: 16px;
+  overflow-x: hidden; }
+  .answer-it header {
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    top: 0;
+    left: 0;
+    background: #b40000;
+    color: #fff;
+    z-index: 100; }
+    .answer-it header .logo {
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      text-shadow: 1px 1px 2px #fff;
+      font-weight: bold;
+      -webkit-transform: translate(0, -50%);
+      -moz-transform: translate(0, -50%);
+      transform: translate(0, -50%); }
+      .answer-it header .logo .it {
+        color: #404040; }
+    .answer-it header nav {
+      position: absolute;
+      height: 100%;
+      top: 0;
+      right: 15px;
+      font-weight: bold;
+      font-size: 0.75em; }
+      .answer-it header nav ul {
+        height: 100%; }
+        .answer-it header nav ul li {
+          display: inline-block;
+          height: 100%;
+          line-height: 50px;
+          -webkit-transition: 0.4s ease-in-out;
+          -moz-transition: 0.4s ease-in-out;
+          transition: 0.4s ease-in-out; }
+          .answer-it header nav ul li:hover {
+            color: #b40000;
+            background-color: #ff9800;
+            -webkit-transition: 0.4s ease-in-out;
+            -moz-transition: 0.4s ease-in-out;
+            transition: 0.4s ease-in-out; }
+          .answer-it header nav ul li a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            padding: 0 10px; }
+  .answer-it footer {
+    padding: 20px 0;
+    margin-top: 30px;
+    color: #404040;
+    -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.25); }
+    .answer-it footer .copyright {
+      font-size: 0.75em; }
+  .answer-it main {
+    position: relative;
+    height: 100%;
+    padding-top: 50px; }
+    .answer-it main .home {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      background-image: url("http://www.eagleonline.com/wp-content/uploads/Survey.jpg");
+      background-size: cover;
+      background-position: center; }
+      .answer-it main .home .welcome {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        padding: 40px;
+        border-radius: 25px;
+        text-align: center;
+        color: #404040;
+        background-color: #fff;
+        background-color: rgba(255, 255, 255, 0.75);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.25);
+        -moz-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.25);
+        box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.25); }
+        .answer-it main .home .welcome p {
+          margin: 0;
+          margin-top: 20px;
+          font-weight: bold; }
+  .answer-it .section-content {
+    width: 980px;
+    margin: auto; }
+
+/*# sourceMappingURL=style.css.map */
