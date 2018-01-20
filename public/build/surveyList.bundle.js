@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 41);
+/******/ 	return __webpack_require__(__webpack_require__.s = 42);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -18422,6 +18422,84 @@ module.exports = isObject;
 /* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _superagent = __webpack_require__(30);
+
+var _superagent2 = _interopRequireDefault(_superagent);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+
+	delete: function _delete() {},
+
+	get: function get(url, params, callback) {
+
+		_superagent2.default.get(url).query(params).set('Accept', 'application/json').end(function (err, response) {
+
+			if (err) {
+
+				callback(err, null);
+				console.error('Error: ' + err);
+				return;
+			}
+
+			var confirmation = response.body.confirmation;
+
+			if (confirmation !== 'success') {
+
+				callback({
+
+					message: response.body.message
+				}, null);
+
+				return;
+			}
+
+			callback(null, response.body);
+		});
+	},
+
+	post: function post(url, body, callback) {
+
+		_superagent2.default.post(url).send(body).set('Accept', 'application/json').end(function (err, response) {
+
+			if (err) {
+
+				callback(err, null);
+				console.error('Error: ' + err);
+				return;
+			}
+
+			var confirmation = response.body.confirmation;
+
+			if (confirmation !== 'success') {
+
+				callback({
+
+					message: response.body.message
+				}, null);
+
+				return;
+			}
+
+			callback(null, response.body);
+		});
+	},
+
+	put: function put() {}
+};
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
 /**
  * Root reference for iframes.
  */
@@ -18436,11 +18514,11 @@ if (typeof window !== 'undefined') { // Browser window
   root = this;
 }
 
-var Emitter = __webpack_require__(30);
-var RequestBase = __webpack_require__(31);
+var Emitter = __webpack_require__(31);
+var RequestBase = __webpack_require__(32);
 var isObject = __webpack_require__(28);
-var ResponseBase = __webpack_require__(32);
-var Agent = __webpack_require__(34);
+var ResponseBase = __webpack_require__(33);
+var Agent = __webpack_require__(35);
 
 /**
  * Noop.
@@ -19345,7 +19423,7 @@ request.put = function(url, data, fn) {
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -19514,7 +19592,7 @@ Emitter.prototype.hasListeners = function(event){
 
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20215,7 +20293,7 @@ RequestBase.prototype._setTimeouts = function() {
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20225,7 +20303,7 @@ RequestBase.prototype._setTimeouts = function() {
  * Module dependencies.
  */
 
-var utils = __webpack_require__(33);
+var utils = __webpack_require__(34);
 
 /**
  * Expose `ResponseBase`.
@@ -20356,7 +20434,7 @@ ResponseBase.prototype._setStatusProperties = function(status){
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20434,7 +20512,7 @@ exports.cleanHeader = function(header, changesOrigin){
 
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports) {
 
 function Agent() {
@@ -20460,13 +20538,13 @@ module.exports = Agent;
 
 
 /***/ }),
-/* 35 */,
 /* 36 */,
 /* 37 */,
 /* 38 */,
 /* 39 */,
 /* 40 */,
-/* 41 */
+/* 41 */,
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20490,7 +20568,7 @@ var _header = __webpack_require__(27);
 
 var _header2 = _interopRequireDefault(_header);
 
-var _surveyList = __webpack_require__(42);
+var _surveyList = __webpack_require__(43);
 
 var _surveyList2 = _interopRequireDefault(_surveyList);
 
@@ -20542,7 +20620,7 @@ var SurveyListLayout = function (_Component) {
 _reactDom2.default.render(_react2.default.createElement(SurveyListLayout, null), document.getElementById('root'));
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20562,13 +20640,11 @@ var _reactDom = __webpack_require__(8);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _superagent = __webpack_require__(29);
-
-var _superagent2 = _interopRequireDefault(_superagent);
-
-var _surveyElement = __webpack_require__(43);
+var _surveyElement = __webpack_require__(44);
 
 var _surveyElement2 = _interopRequireDefault(_surveyElement);
+
+var _utils = __webpack_require__(45);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20598,19 +20674,17 @@ var SurveyList = function (_Component) {
 		value: function componentDidMount() {
 			var _this2 = this;
 
-			_superagent2.default.get('/api/survey').query(null).set('Accept', 'application/json').end(function (err, response) {
+			_utils.APIManager.get('/api/survey', null, function (err, response) {
 
 				if (err) {
 
-					console.error('Error: ' + err);
+					console.error('Error: ' + err.message);
 					return;
 				}
 
-				var results = response.body.results;
-
 				_this2.setState({
 
-					list: results
+					list: response.results
 				});
 			});
 		}
@@ -20651,7 +20725,7 @@ exports.default = SurveyList;
 ;
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20709,6 +20783,26 @@ var SurveyElement = function (_Component) {
 }(_react.Component);
 
 exports.default = SurveyElement;
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.APIManager = undefined;
+
+var _APIManager = __webpack_require__(29);
+
+var _APIManager2 = _interopRequireDefault(_APIManager);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.APIManager = _APIManager2.default;
 
 /***/ })
 /******/ ]);

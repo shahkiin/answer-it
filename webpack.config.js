@@ -11,6 +11,8 @@ module.exports = {
 	},
 	output: {
 
+		//path: path.resolve(__dirname, 'dist'),
+		//filename: 'test.bundle.js'
 		filename: `public/build/[name].bundle.js`,
 		sourceMapFilename: 'public/build/[name].bundle.map'
 	},

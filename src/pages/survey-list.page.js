@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import superagent from 'superagent';
 import SurveyElement from '../components/survey-element.component';
+import { APIManager } from '../utils';
 
 export default class SurveyList extends Component {
 
@@ -16,23 +16,17 @@ export default class SurveyList extends Component {
 
 	componentDidMount() {
 
-		superagent
-		.get('/api/survey')
-		.query(null)
-		.set('Accept', 'application/json')
-		.end((err, response) => {
+		APIManager.get('/api/survey', null, (err, response) => {
 
 			if (err) {
 
-				console.error('Error: ' + err);
+				console.error('Error: ' + err.message);
 				return;
 			}
 
-			let results = response.body.results;
-
 			this.setState({
 
-				list: results
+				list: response.results
 			});
 		});
 	}

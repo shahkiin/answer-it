@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 39);
+/******/ 	return __webpack_require__(__webpack_require__.s = 40);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -18422,6 +18422,84 @@ module.exports = isObject;
 /* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _superagent = __webpack_require__(30);
+
+var _superagent2 = _interopRequireDefault(_superagent);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+
+	delete: function _delete() {},
+
+	get: function get(url, params, callback) {
+
+		_superagent2.default.get(url).query(params).set('Accept', 'application/json').end(function (err, response) {
+
+			if (err) {
+
+				callback(err, null);
+				console.error('Error: ' + err);
+				return;
+			}
+
+			var confirmation = response.body.confirmation;
+
+			if (confirmation !== 'success') {
+
+				callback({
+
+					message: response.body.message
+				}, null);
+
+				return;
+			}
+
+			callback(null, response.body);
+		});
+	},
+
+	post: function post(url, body, callback) {
+
+		_superagent2.default.post(url).send(body).set('Accept', 'application/json').end(function (err, response) {
+
+			if (err) {
+
+				callback(err, null);
+				console.error('Error: ' + err);
+				return;
+			}
+
+			var confirmation = response.body.confirmation;
+
+			if (confirmation !== 'success') {
+
+				callback({
+
+					message: response.body.message
+				}, null);
+
+				return;
+			}
+
+			callback(null, response.body);
+		});
+	},
+
+	put: function put() {}
+};
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
 /**
  * Root reference for iframes.
  */
@@ -18436,11 +18514,11 @@ if (typeof window !== 'undefined') { // Browser window
   root = this;
 }
 
-var Emitter = __webpack_require__(30);
-var RequestBase = __webpack_require__(31);
+var Emitter = __webpack_require__(31);
+var RequestBase = __webpack_require__(32);
 var isObject = __webpack_require__(28);
-var ResponseBase = __webpack_require__(32);
-var Agent = __webpack_require__(34);
+var ResponseBase = __webpack_require__(33);
+var Agent = __webpack_require__(35);
 
 /**
  * Noop.
@@ -19345,7 +19423,7 @@ request.put = function(url, data, fn) {
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -19514,7 +19592,7 @@ Emitter.prototype.hasListeners = function(event){
 
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20215,7 +20293,7 @@ RequestBase.prototype._setTimeouts = function() {
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20225,7 +20303,7 @@ RequestBase.prototype._setTimeouts = function() {
  * Module dependencies.
  */
 
-var utils = __webpack_require__(33);
+var utils = __webpack_require__(34);
 
 /**
  * Expose `ResponseBase`.
@@ -20356,7 +20434,7 @@ ResponseBase.prototype._setStatusProperties = function(status){
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20434,7 +20512,7 @@ exports.cleanHeader = function(header, changesOrigin){
 
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports) {
 
 function Agent() {
@@ -20460,11 +20538,11 @@ module.exports = Agent;
 
 
 /***/ }),
-/* 35 */,
 /* 36 */,
 /* 37 */,
 /* 38 */,
-/* 39 */
+/* 39 */,
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20488,7 +20566,7 @@ var _header = __webpack_require__(27);
 
 var _header2 = _interopRequireDefault(_header);
 
-var _surveyEditor = __webpack_require__(40);
+var _surveyEditor = __webpack_require__(41);
 
 var _surveyEditor2 = _interopRequireDefault(_surveyEditor);
 
@@ -20535,7 +20613,7 @@ var SurveyEditorLayout = function (_Component) {
 _reactDom2.default.render(_react2.default.createElement(SurveyEditorLayout, null), document.getElementById('root'));
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20555,9 +20633,7 @@ var _reactDom = __webpack_require__(8);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _superagent = __webpack_require__(29);
-
-var _superagent2 = _interopRequireDefault(_superagent);
+var _APIManager = __webpack_require__(29);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20573,33 +20649,78 @@ var SurveyEditor = function (_Component) {
 	function SurveyEditor() {
 		_classCallCheck(this, SurveyEditor);
 
-		return _possibleConstructorReturn(this, (SurveyEditor.__proto__ || Object.getPrototypeOf(SurveyEditor)).call(this));
+		var _this = _possibleConstructorReturn(this, (SurveyEditor.__proto__ || Object.getPrototypeOf(SurveyEditor)).call(this));
+
+		_this.state = {
+
+			list: []
+		};
+		return _this;
 	}
 
 	_createClass(SurveyEditor, [{
-		key: 'componentDidMount',
-		value: function componentDidMount() {
+		key: 'submitSurvey',
+		value: function submitSurvey() {
 
-			console.log("mounted editor!");
+			console.log('submit survey');
 
-			//		superagent
-			//			.get()
-			//			.query()
-			//			.set()
-			//			.end();
+			var updatedSurvey = Object.assign({}, this.state.survey);
+
+			_APIManager.APIManager.post('/api/survey', updatedSurvey, function (err, response) {
+
+				if (err) {
+
+					console.error('Error: ' + err.message);
+					return;
+				}
+
+				console.log('Survey created: ' + JSON.stringify(response));
+			});
+		}
+	}, {
+		key: 'updateSurveyDescription',
+		value: function updateSurveyDescription() {
+
+			console.log('update description');
+
+			var updatedSurvey = Object.assign({}, this.state.survey);
+			updatedSurvey['description'] = event.target.description;
+
+			this.state({
+
+				survey: updatedSurvey
+			});
+		}
+	}, {
+		key: 'updateSurveyName',
+		value: function updateSurveyName() {
+
+			console.log('update name');
+
+			var updatedSurvey = Object.assign({}, this.state.survey);
+			updatedSurvey['name'] = event.target.name;
+
+			this.state({
+
+				survey: updatedSurvey
+			});
 		}
 	}, {
 		key: 'render',
 		value: function render() {
 
 			return _react2.default.createElement(
-				'form',
-				{ action: '/api/survey', method: 'post' },
-				_react2.default.createElement('input', { type: 'text', name: 'name', placeholder: 'Survey name' }),
+				'div',
+				null,
+				_react2.default.createElement('input', { type: 'text', name: 'name', placeholder: 'Survey name', onChange: this.updateSurveyName.bind(this) }),
 				_react2.default.createElement('br', null),
-				_react2.default.createElement('input', { type: 'text', name: 'description', placeholder: 'Description' }),
+				_react2.default.createElement('input', { type: 'text', name: 'description', placeholder: 'Description', onChange: this.updateSurveyDescription.bind(this) }),
 				_react2.default.createElement('br', null),
-				_react2.default.createElement('input', { type: 'submit', value: 'Create survey' })
+				_react2.default.createElement(
+					'button',
+					{ onClick: this.submitSurvey.bind(this) },
+					'Create survey'
+				)
 			);
 		}
 	}]);

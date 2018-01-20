@@ -33,7 +33,7 @@ router.get('/:resource', function(req, res, next) {
 
 		res.json({
 
-			confirmation: 'sccuess',
+			confirmation: 'success',
 			results: results
 		});
 	});
