@@ -20,8 +20,8 @@ mongoose.connect(dbUrl, function(err, res) {
 
 var home = require( './routes/home' );
 var api = require( './routes/api' );
-var surveyEditor = require( './routes/survey-editor' );
-var surveyList = require( './routes/survey-list' );
+//var surveyEditor = require( './routes/survey-editor' );
+//var surveyList = require( './routes/survey-list' );
 
 var app = express();
 
@@ -36,17 +36,17 @@ app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded( { extended: false } ) );
 app.use( cookieParser() );
 app.use( sassMiddleware( {
-	src: path.join( __dirname, 'public' ),
-	dest: path.join( __dirname, 'public' ),
-	indentedSyntax: true, // true = .sass and false = .scss
-	sourceMap: true
+	src: path.join( __dirname, 'public/scss' ), // Artur: this might be buggy ! https://github.com/sass/node-sass/issues/227
+	dest: path.join( __dirname, 'public/css' ),
+	indentedSyntax: false // true = .sass and false = .scss
+	//sourceMap: true
 } ) );
 app.use( express.static( path.join( __dirname, 'public' ) ) );
 
 app.use( '/', home );
 app.use( '/api', api );
-app.use( '/surveyEditor', surveyEditor );
-app.use( '/surveyList', surveyList );
+//app.use( '/surveyEditor', surveyEditor );
+//app.use( '/surveyList', surveyList );
 
 // catch 404 and forward to error handler
 app.use( function ( req, res, next ) {
@@ -63,7 +63,15 @@ app.use( function ( err, req, res, next ) {
 
 	// render the error page
 	res.status( err.status || 500 );
-	res.render( 'pages/error' );
+	res.render( 'layout' );
+} );
+
+const port = process.env.PORT || 8080;
+app.listen( port, err => {
+	if ( err ) {
+		return console.error( err );
+	}
+	console.info( `Server running on http://localhost:${port}` );
 } );
 
 module.exports = app;
