@@ -61,7 +61,8 @@ export default class SurveyEditor extends Component {
 
 		return (
 			
-			<div>
+			<div className="survey-editor section-content">
+				<h1>Survey editor</h1>
 				<input type="text" name="name" placeholder="Survey name" onChange={this.updateSurveyName.bind(this)} /><br />
 				<input type="text" name="description" placeholder="Description" onChange={this.updateSurveyDescription.bind(this)} /><br />
 				<button onClick={this.submitSurvey.bind(this)}>Create survey</button>

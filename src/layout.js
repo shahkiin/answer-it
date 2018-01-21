@@ -13,6 +13,8 @@ import Error from './pages/error.page';
 import Home from './pages/home.page';
 import SurveyEditor from './pages/survey-editor.page';
 import SurveyList from './pages/survey-list.page';
+import LogIn from './pages/log-in.page';
+import SignUp from './pages/sign-up.page';
 
 class Layout extends Component {
 
@@ -27,7 +29,8 @@ class Layout extends Component {
 							<Route exact path="/" component={Home} />
 							<Route path="/surveyEditor" component={SurveyEditor} />
 							<Route path="/surveyList" component={SurveyList} />
-							
+							<Route path="/logIn" component={LogIn} />
+							<Route path="/signUp" component={SignUp} />
 						</Switch>
 					</main>
 					<Footer />

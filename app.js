@@ -36,7 +36,7 @@ app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded( { extended: false } ) );
 app.use( cookieParser() );
 app.use( sassMiddleware( {
-	src: path.join( __dirname, 'public/scss' ), // Artur: this might be buggy ! https://github.com/sass/node-sass/issues/227
+	src: path.join( __dirname, 'public/scss' ), // Artur: this might be buggy, cannot target other dir that public https://github.com/sass/node-sass/issues/227
 	dest: path.join( __dirname, 'public/css' ),
 	indentedSyntax: false // true = .sass and false = .scss
 	//sourceMap: true

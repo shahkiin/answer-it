@@ -1,7 +1,5 @@
 var path = require('path');
-
 var BUILD_DIR = path.resolve(__dirname, 'public/build');
-
 
 module.exports = {
 

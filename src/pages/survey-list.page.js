@@ -41,13 +41,13 @@ export default class SurveyList extends Component {
 			);
 		});
 
+		let result = surveyList.length ? <ul>{ surveyList }</ul> : <div className="empty-list">Empty survey list.</div>;
+
 		return (
 
-			<div>
+			<div className="survey-list section-content">
 				<h1>Survey List</h1>
-				<ul>
-					{ surveyList }
-				</ul>
+				{ result }
 			</div>
 		);
 	}
