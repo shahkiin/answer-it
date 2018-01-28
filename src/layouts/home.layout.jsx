@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
-//import {
-//	BrowserRouter as Router,
-//	Route
-//} from 'react-router-dom';
-
-import Footer from '../components/footer.component';
-import Header from '../components/header.component';
-import Home from '../pages/home.page';
+import Footer from '../components/footer.component.jsx';
+import Header from '../components/header.component.jsx';
+import Home from '../pages/home.page.jsx';
 
 class HomeLayout extends Component {
 

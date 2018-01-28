@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import SurveyElement from '../components/survey-element.component';
-import { APIManager } from '../utils';
+import SurveyElement from '../components/survey-element.component.jsx';
+import APIManager from '../utils/APIManager.jsx';
 
 export default class SignUp extends Component {
 
@@ -41,11 +41,12 @@ export default class SignUp extends Component {
 			return;
 		}
 
-		APIManager.post('/api/register', {
+		APIManager.post('/register', {
 
 			confirmation: this.state.confirmation,
 			username: this.state.username,
-			password: this.state.password
+			password: this.state.password,
+			passwordRepeat: this.state.passwordRepeat
 			
 		}, (err, response) => {
 
@@ -55,7 +56,7 @@ export default class SignUp extends Component {
 				return;
 			}
 
-			console.log('Register success: ' + JSON.stringify(response));
+			this.props.history.push('/logIn');
 		});
 	}
 

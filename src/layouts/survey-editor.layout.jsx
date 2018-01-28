@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import Footer from '../components/footer.component';
-import Header from '../components/header.component';
-import SurveyEditor from '../pages/survey-editor.page';
+import Footer from '../components/footer.component.jsx';
+import Header from '../components/header.component.jsx';
+import SurveyEditor from '../pages/survey-editor.page.jsx';
 
 class SurveyEditorLayout extends Component {
 

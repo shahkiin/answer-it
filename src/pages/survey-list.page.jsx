@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import SurveyElement from '../components/survey-element.component';
-import { APIManager } from '../utils';
+import SurveyElement from '../components/survey-element.component.jsx';
+import APIManager from '../utils/APIManager.jsx';
 
 export default class SurveyList extends Component {
 

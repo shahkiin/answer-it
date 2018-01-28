@@ -1,24 +1,64 @@
-var Survey = require('../models/Survey');
+var User = require('../models/User');
+// var bcrypt = require('bcryptjs');
+// https://github.com/scotch-io/easy-node-authentication/blob/local/app/models/user.js
+
+// na razie nie używane !!!
 
 module.exports = {
 
 	create: function(params, callback) {
 
-		Survey.create(params, function(err, survey) {
+		console.log('controller', params);
 
-			if (err) {
+		let newUser = new User({
 
-				callback(err, null);
-				return;
-			}
+			username: params.username,
+			password: params.password,
+			confirmation: params.confirmation
+		});
 
-			callback(null, survey);
+		console.log('newuser', newUser);
+
+		bcrypt.getSalt(10, function(err, salt) {
+console.log('setdalt callback', err, salt);
+			bcrypt.hash(newUser.password, salt, function(err, hash) {
+console.log('hash callback', err, hash);
+				if (err) {
+
+					callback(err, null);
+					return;
+				}
+
+				newUser.password = hash;
+				console.log('going to save');
+				newUser.save(function(err) {
+					console.log('save callback', err);
+					if (err) {
+
+						callback(err);
+						return;
+					}
+
+					callback(null);
+				});
+
+				// User.create(newUser, function(err, user) {
+
+				// 	if (err) {
+		
+				// 		callback(err);
+				// 		return;
+				// 	}
+		
+				// 	callback(null);
+				// });
+			});
 		});
 	},
 
 	delete: function(id, callback) {
 
-		Survey.findByIdAndRemove(id, function(err) {
+		User.findByIdAndRemove(id, function(err) {
 
 			if (err) {
 
@@ -32,7 +72,7 @@ module.exports = {
 
 	find: function(params, callback) {
 
-		Survey.find(params, function(err, surveys) {
+		User.find(params, function(err, surveys) {
 
 			if (err) {
 
@@ -46,7 +86,7 @@ module.exports = {
 
 	findById: function(id, callback) {
 
-		Survey.findById(id, function(err, survey) {
+		User.findById(id, function(err, survey) {
 
 			if (err) {
 
@@ -60,7 +100,7 @@ module.exports = {
 
 	update: function(id, params, callback) {
 
-		Survey.findByIdAndUpdate(id, params, { new: true }, function(err, survey) {
+		User.findByIdAndUpdate(id, params, { new: true }, function(err, survey) {
 
 			if (err) {
 

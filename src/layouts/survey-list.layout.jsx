@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
-//import {
-//	BrowserRouter as Router,
-//	Route
-//} from 'react-router-dom';
-
-import Footer from '../components/footer.component';
-import Header from '../components/header.component';
-import SurveyList from '../pages/survey-list.page';
+import Footer from '../components/footer.component.jsx';
+import Header from '../components/header.component.jsx';
+import SurveyList from '../pages/survey-list.page.jsx';
 
 class SurveyListLayout extends Component {
 

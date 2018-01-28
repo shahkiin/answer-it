@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { APIManager } from '../utils/APIManager';
+import APIManager from '../utils/APIManager.jsx';
 
 export default class SurveyEditor extends Component {
 

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import Footer from '../components/footer.component';
-import Header from '../components/header.component';
-import Error from '../pages/error.page';
+import Footer from '../components/footer.component.jsx';
+import Header from '../components/header.component.jsx';
+import Error from '../pages/error.page.jsx';
 
 class ErrorLayout extends Component {
 

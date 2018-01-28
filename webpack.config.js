@@ -1,11 +1,12 @@
 var path = require('path');
 var BUILD_DIR = path.resolve(__dirname, 'public/build');
+var APP_DIR = path.resolve(__dirname, 'src');
 
 module.exports = {
 
 	entry: {
 
-		layout: './src/layout.js'
+		layout: './src/layout.jsx'
 		//error: './src/layouts/error.layout.js',
 		//home: './src/layouts/home.layout.js',
 		//surveyEditor: './src/layouts/survey-editor.layout.js',
@@ -23,8 +24,9 @@ module.exports = {
 
 		loaders: [{
 
-			test: /\.js$/,
+			test: /\.jsx?/,
 			exclude: /(node_modules)/,
+			include: APP_DIR,
 			loader: 'babel-loader',
 			query: {
 

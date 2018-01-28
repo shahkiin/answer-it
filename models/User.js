@@ -1,12 +1,29 @@
 var mongoose = require('mongoose');
+var bcrypt = require('bcryptjs');
 
-var SurveySchema = new mongoose.Schema({
+var UserSchema = new mongoose.Schema({
 
-	name: { type: String, default: '', required: true },
-	description: { type: String, default: '' },
-	created: { type: Date, default: Date.now },
-	questions: { type: Array, default: [] },
-	author: { type: Number, default: 0, required: true }
+	username: { type: String, required: true },
+	password: { type: String, required: true },
+	confirmation: { type: Boolean, required: true }
 });
 
-module.exports = mongoose.model('SurveySchema', SurveySchema);
+var Usrer = module.exports = mongoose.model('users', UserSchema);
+
+module.exports.createUser = function(newUser, callback) {
+
+	bcrypt.genSalt(10, function(err, salt) {
+
+		if (err) {
+
+			throw err;
+			return;
+		}
+
+		bcrypt.hash(newUser.password, salt, function(err, hash) {
+
+			newUser.password = hash;
+			newUser.save(callback);
+		});
+	});
+}

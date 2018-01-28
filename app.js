@@ -6,6 +6,9 @@ var cookieParser = require( 'cookie-parser' );
 var bodyParser = require( 'body-parser' );
 var sassMiddleware = require( 'node-sass-middleware' );
 var mongoose = require( 'mongoose' );
+var passport = require( 'passport' );
+var LocalStrategy = require( 'passport-local' ).Stratery;
+var session = require('express-session');
 
 var dbUrl = 'mongodb://localhost:27017/answer-it';
 mongoose.connect(dbUrl, function(err, res) {
@@ -20,8 +23,10 @@ mongoose.connect(dbUrl, function(err, res) {
 
 var home = require( './routes/home' );
 var api = require( './routes/api' );
-//var surveyEditor = require( './routes/survey-editor' );
-//var surveyList = require( './routes/survey-list' );
+var register = require( './routes/register' );
+var logIn = require( './routes/log-in' );
+var surveyEditor = require( './routes/survey-editor' );
+var surveyList = require( './routes/survey-list' );
 
 var app = express();
 
@@ -43,10 +48,21 @@ app.use( sassMiddleware( {
 } ) );
 app.use( express.static( path.join( __dirname, 'public' ) ) );
 
+// Express Session
+app.use(session({
+	secret: 'secret',
+	saveUninitialized: true,
+	resave: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use( '/', home );
 app.use( '/api', api );
-//app.use( '/surveyEditor', surveyEditor );
-//app.use( '/surveyList', surveyList );
+app.use( '/register', register );
+app.use( '/logIn', logIn );
+app.use( '/surveyEditor', surveyEditor );
+app.use( '/surveyList', surveyList );
 
 // catch 404 and forward to error handler
 app.use( function ( req, res, next ) {
