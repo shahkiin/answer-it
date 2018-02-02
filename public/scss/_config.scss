@@ -1,0 +1,45 @@
+$color-primary: #b40000;
+$color-secondary: #ff9800;
+$color-black: #000;
+$color-dark: #404040;
+$color-grey: #bfbfbf;
+$color-white: #fff;
+$color-error: #ff0000;
+$color-info: #2196f3;
+
+$index-header: 100;
+
+@mixin backgroundColorOpacity($color, $opacity) {
+
+	background-color: $color; /* The Fallback */
+	background-color: rgba($color, $opacity);
+}
+
+@mixin calc($property, $expression...) {
+	
+	#{$property}: -moz-calc(#{$expression});
+	#{$property}: -o-calc(#{$expression});
+	#{$property}: -webkit-calc(#{$expression});
+	#{$property}: calc(#{$expression});
+}
+
+@mixin shadow() {
+
+	-webkit-box-shadow: 0px 0px 50px 5px rgba(0,0,0,0.25);
+	-moz-box-shadow: 0px 0px 50px 5px rgba(0,0,0,0.25);
+	box-shadow: 0px 0px 50px 5px rgba(0,0,0,0.25);
+}
+
+@mixin translate($latitude, $longitude) {
+
+	-webkit-transform: translate($latitude, $longitude);
+	-moz-transform: translate($latitude, $longitude);
+	transform: translate($latitude, $longitude);
+}
+
+@mixin transition($time) {
+
+	-webkit-transition: $time;
+	-moz-transition: $time;
+	transition: $time;
+}

@@ -93,7 +93,6 @@ export default class SignUp extends Component {
 	render() {
 
 		return (
-
 			<div className="sign-up section-content">
 				<h1>Sign up</h1>
 				<form onSubmit={this.submitRegister.bind(this)}>

@@ -1,11 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var controllers = require('../controllers');
-var expressValidator = require('express-validator');
-var bcrypt = require('bcryptjs');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 var User = require('../models/User');
-
-router.use( expressValidator() );
 
 var headOptions = {
 
@@ -14,7 +11,10 @@ var headOptions = {
 
 router.get('/', function(req, res, next) {
 
-	res.render('layout', headOptions);
+	res.logout();
+	res.flash('success_msg', 'You are logged out.');
+
+	res.redirect('/login');
 });
 
 module.exports = router;

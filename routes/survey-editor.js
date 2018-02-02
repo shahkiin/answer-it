@@ -8,7 +8,11 @@ var headOptions = {
 
 router.get('/', function(req, res, next) {
 
-	//res.render('pages/home', { title: 'answerIt - simple service to create and share surveys.' });
+	if (!res.locals.user) {
+
+		res.redirect('/');
+	}
+
 	res.render('layout', headOptions);
 });
 

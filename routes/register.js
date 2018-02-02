@@ -13,6 +13,11 @@ var headOptions = {
 
 router.get('/', function(req, res, next) {
 
+	if (res.locals.user) {
+
+		res.redirect('/');
+	}
+
 	res.render('layout', headOption);
 });
 
@@ -52,10 +57,6 @@ router.post('/', function (req, res, next) {
 
 				throw err;
 			}
-
-			console.log('redirect?');
-
-			// res.redirect('/logIn');
 
 			res.json({
 

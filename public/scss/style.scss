@@ -1,0 +1,39 @@
+@import '_config';
+@import '_reset';
+@import '_buttons';
+
+#root {
+
+	height: 100%;
+}
+
+.answer-it {
+
+	height: 100%;
+	font-size: 16px;
+	overflow-x: hidden;
+
+	@import 'components/header';
+	@import 'components/footer';
+ 
+	main {
+
+		position: relative;
+		padding-top: 50px;
+
+		h1 {
+
+			color: $color-dark;
+		}
+
+		@import 'pages/home';
+		@import 'pages/sign-up';
+	}
+
+	.section-content {
+
+		width: 980px;
+		margin: auto;
+		text-align: center;
+	}
+}

@@ -52,6 +52,8 @@ export default {
 				console.error('Error: ' + err);
 				return;
 			}
+console.warn(response);
+			console.log('api response', response.body);
 
 			const confirmation = response.body.confirmation;
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import APIManager from '../utils/APIManager.jsx';
+// import { Message } from "../components/message.component.jsx";
 
 export default class SurveyEditor extends Component {
 
@@ -60,7 +61,6 @@ export default class SurveyEditor extends Component {
 	render() {
 
 		return (
-			
 			<div className="survey-editor section-content">
 				<h1>Survey editor</h1>
 				<input type="text" name="name" placeholder="Survey name" onChange={this.updateSurveyName.bind(this)} /><br />

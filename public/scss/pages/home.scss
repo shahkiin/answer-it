@@ -1,0 +1,31 @@
+.home {
+
+	position: relative;
+	width: 100%;
+	background-image: url('http://www.eagleonline.com/wp-content/uploads/Survey.jpg');
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	@include calc(height, #{"100vh - 50px - 92px"});
+
+	.welcome {
+
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		padding: 40px;
+		border-radius: 25px;
+		text-align: center;
+		color: $color-dark;
+		@include backgroundColorOpacity($color-white, 0.75);
+		@include translate(-50%, -50%);
+		@include shadow();
+
+		p {
+
+			margin: 0;
+			margin-top: 20px;
+			font-weight: bold;
+		}
+	}
+}

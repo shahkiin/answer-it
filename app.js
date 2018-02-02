@@ -9,6 +9,7 @@ var mongoose = require( 'mongoose' );
 var passport = require( 'passport' );
 var LocalStrategy = require( 'passport-local' ).Stratery;
 var session = require('express-session');
+var flash = require('express-flash');
 
 var dbUrl = 'mongodb://localhost:27017/answer-it';
 mongoose.connect(dbUrl, function(err, res) {
@@ -25,6 +26,7 @@ var home = require( './routes/home' );
 var api = require( './routes/api' );
 var register = require( './routes/register' );
 var logIn = require( './routes/log-in' );
+var logOut = require( './routes/log-out' );
 var surveyEditor = require( './routes/survey-editor' );
 var surveyList = require( './routes/survey-list' );
 
@@ -40,11 +42,17 @@ app.use( logger( 'dev' ) );
 app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded( { extended: false } ) );
 app.use( cookieParser() );
-app.use( sassMiddleware( {
+app.use( sassMiddleware( { // this shitty plugin wont work properly
 	src: path.join( __dirname, 'public/scss' ), // Artur: this might be buggy, cannot target other dir that public https://github.com/sass/node-sass/issues/227
 	dest: path.join( __dirname, 'public/css' ),
-	indentedSyntax: false // true = .sass and false = .scss
-	//sourceMap: true
+	indentedSyntax: false, // true = .sass and false = .scss
+	sourceMap: true,
+	debug: true,
+	force: true,
+	log: function (severity, key, value) { 
+
+		winston.log(severity, 'node-sass-middleware   %s : %s', key, value);
+	}
 } ) );
 app.use( express.static( path.join( __dirname, 'public' ) ) );
 
@@ -52,15 +60,29 @@ app.use( express.static( path.join( __dirname, 'public' ) ) );
 app.use(session({
 	secret: 'secret',
 	saveUninitialized: true,
-	resave: true
+	resave: true,
+	cookie: { maxAge: 60000 }
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
+
+// Global Vars
+app.use(function (req, res, next) {
+
+	res.locals.success_msg = req.flash('success_msg');
+	res.locals.error_msg = req.flash('error_msg');
+	res.locals.error = req.flash('error');
+	res.locals.user = req.user || null;
+
+	next();
+});
 
 app.use( '/', home );
 app.use( '/api', api );
 app.use( '/register', register );
 app.use( '/logIn', logIn );
+app.use( '/logOut', logOut );
 app.use( '/surveyEditor', surveyEditor );
 app.use( '/surveyList', surveyList );
 
