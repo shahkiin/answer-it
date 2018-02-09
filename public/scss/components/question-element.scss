@@ -1,0 +1,106 @@
+.question-element {
+
+	margin-top: 20px;
+	padding: 20px;
+	display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+	@include shadow();
+	
+	.desc {
+
+		width: 50%;
+	}
+
+	.answer {
+
+		width: 50%;
+		text-align: center;
+
+		h4 {
+
+			margin-bottom: 20px;
+		}
+
+		.group {
+
+			display: inline-block;
+			margin: 0 10px;
+
+			&.active {
+
+				padding: 10px;
+				border: 2px solid $color-primary;
+				border-radius: 25px;
+			}
+
+			&.active,
+			&.inactive {
+
+				input,
+				label {
+
+					cursor: auto;
+				}
+			}
+
+			input {
+
+				width: 100%;
+				cursor: pointer;
+			}
+
+			label {
+
+				width: 100%;
+				cursor: pointer;
+				font-size: 1.2em;
+				font-weight: bold;
+			}
+		}
+	}
+
+	.edit {
+
+		width: 50%;
+		text-align: center;
+
+		table {
+
+			width: 100%;
+			background: $color-white;
+			color: $color-dark;
+			border: 2px solid $color-primary;
+			border-radius: 25px;
+			margin: 20px 0;
+
+			th {
+
+				border-bottom: 1px solid $color-grey;
+				color: $color-primary;
+				font-weight: bold;
+				font-size: 0.8em;
+			}
+
+			th,
+			td {
+
+				border-right: 1px solid $color-dark;
+
+				&:last-child {
+
+					border-right: 0;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,4 @@
+{
+    "jwtSecret": "SecretCodeOfAnswerIt",
+    "dbUri": "mongodb://localhost:27017/answer-it"
+}

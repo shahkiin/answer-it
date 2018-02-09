@@ -26,13 +26,16 @@
 			color: $color-dark;
 		}
 
-		@import 'pages/home';
-		@import 'pages/sign-up';
+		@import 'components/home';
+		@import 'components/question-list';
+		@import 'components/question-element';
+		@import 'components/confirm';
+		@import 'components/form';
 	}
 
 	.section-content {
 
-		width: 980px;
+		max-width: 980px;
 		margin: auto;
 		text-align: center;
 	}

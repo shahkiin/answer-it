@@ -41,7 +41,19 @@ html {
   box-sizing: inherit; }
 
 .button {
-  text-transform: uppercase; }
+  border: 2px solid #b40000;
+  background-color: #fff;
+  color: #404040;
+  padding: 10px 5px;
+  border-radius: 25px;
+  font-weight: bold;
+  display: inline-block;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  transition: 0.4s; }
+  .button:hover {
+    background-color: #b40000;
+    color: #fff; }
 
 input[type=text],
 input[type=password],
@@ -57,7 +69,8 @@ input[type=number] {
   input[type=number]:focus {
     border-color: #ff9800; }
 
-input[type=submit] {
+input[type=submit],
+button {
   background-color: #fff;
   color: #404040;
   border: 1px solid #404040;
@@ -68,7 +81,8 @@ input[type=submit] {
   -webkit-transition: 0.4s;
   -moz-transition: 0.4s;
   transition: 0.4s; }
-  input[type=submit]:hover {
+  input[type=submit]:hover,
+  button:hover {
     background-color: #404040;
     color: #fff; }
 
@@ -175,48 +189,128 @@ input[type=submit] {
           margin: 0;
           margin-top: 20px;
           font-weight: bold; }
-    .answer-it main .sign-up,
-    .answer-it main .log-in {
+    .answer-it main .question-list {
+      margin-top: 30px;
+      text-align: left; }
+      .answer-it main .question-list h3 {
+        margin: 20px 0; }
+      .answer-it main .question-list h2 {
+        cursor: pointer;
+        margin: 20px 0;
+        -webkit-transition: 0.2s ease-in-out;
+        -moz-transition: 0.2s ease-in-out;
+        transition: 0.2s ease-in-out; }
+        .answer-it main .question-list h2:hover {
+          color: #ff9800; }
+      .answer-it main .question-list .button {
+        margin-left: 20px;
+        font-size: 0.8em; }
+      .answer-it main .question-list .empty-list {
+        margin-top: 20px; }
+    .answer-it main .question-element {
+      margin-top: 20px;
+      padding: 20px;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.25);
+      -moz-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.25);
+      box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.25); }
+      .answer-it main .question-element .desc {
+        width: 50%; }
+      .answer-it main .question-element .answer {
+        width: 50%;
+        text-align: center; }
+        .answer-it main .question-element .answer h4 {
+          margin-bottom: 20px; }
+        .answer-it main .question-element .answer .group {
+          display: inline-block;
+          margin: 0 10px; }
+          .answer-it main .question-element .answer .group.active {
+            padding: 10px;
+            border: 2px solid #b40000;
+            border-radius: 25px; }
+          .answer-it main .question-element .answer .group.active input,
+          .answer-it main .question-element .answer .group.active label, .answer-it main .question-element .answer .group.inactive input,
+          .answer-it main .question-element .answer .group.inactive label {
+            cursor: auto; }
+          .answer-it main .question-element .answer .group input {
+            width: 100%;
+            cursor: pointer; }
+          .answer-it main .question-element .answer .group label {
+            width: 100%;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold; }
+      .answer-it main .question-element .edit {
+        width: 50%;
+        text-align: center; }
+        .answer-it main .question-element .edit table {
+          width: 100%;
+          background: #fff;
+          color: #404040;
+          border: 2px solid #b40000;
+          border-radius: 25px;
+          margin: 20px 0; }
+          .answer-it main .question-element .edit table th {
+            border-bottom: 1px solid #bfbfbf;
+            color: #b40000;
+            font-weight: bold;
+            font-size: 0.8em; }
+          .answer-it main .question-element .edit table th,
+          .answer-it main .question-element .edit table td {
+            border-right: 1px solid #404040; }
+            .answer-it main .question-element .edit table th:last-child,
+            .answer-it main .question-element .edit table td:last-child {
+              border-right: 0; }
+    .answer-it main .confirm button {
+      margin: 20px; }
+    .answer-it main .form {
       position: relative;
       height: -moz-calc(100vh - 50px - 92px);
       height: -o-calc(100vh - 50px - 92px);
       height: -webkit-calc(100vh - 50px - 92px);
       height: calc(100vh - 50px - 92px);
       padding-top: 60px; }
-      .answer-it main .sign-up form,
-      .answer-it main .log-in form {
+      .answer-it main .form form {
         width: 400px;
         margin: 0 auto; }
-        .answer-it main .sign-up form input[type=text],
-        .answer-it main .sign-up form input[type=password],
-        .answer-it main .sign-up form input[type=submit],
-        .answer-it main .log-in form input[type=text],
-        .answer-it main .log-in form input[type=password],
-        .answer-it main .log-in form input[type=submit] {
+        .answer-it main .form form input[type=text],
+        .answer-it main .form form input[type=password],
+        .answer-it main .form form input[type=submit],
+        .answer-it main .form form button {
           width: 100%;
           margin-top: 20px;
           text-align: center; }
-        .answer-it main .sign-up form .row,
-        .answer-it main .log-in form .row {
+        .answer-it main .form form select {
+          width: 100%;
+          margin-top: 20px; }
+        .answer-it main .form form .row {
           width: 100%;
           margin-top: 20px;
           display: flex;
           justify-content: center;
           align-items: center; }
-          .answer-it main .sign-up form .row input[type=checkbox],
-          .answer-it main .log-in form .row input[type=checkbox] {
+          .answer-it main .form form .row input[type=checkbox] {
             cursor: pointer;
             margin-right: 10px; }
-          .answer-it main .sign-up form .row label,
-          .answer-it main .log-in form .row label {
+          .answer-it main .form form .row label {
             cursor: pointer; }
-          .answer-it main .sign-up form .row .error,
-          .answer-it main .log-in form .row .error {
+          .answer-it main .form form .row .error {
             font-size: 0.8em;
             font-weight: bold;
             color: #b40000; }
   .answer-it .section-content {
-    width: 980px;
+    max-width: 980px;
     margin: auto;
     text-align: center; }
 

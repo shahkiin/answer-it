@@ -10,25 +10,9 @@ var passport = require( 'passport' );
 var LocalStrategy = require( 'passport-local' ).Stratery;
 var session = require('express-session');
 var flash = require('express-flash');
+var config = require('./config/index.json');
 
-var dbUrl = 'mongodb://localhost:27017/answer-it';
-mongoose.connect(dbUrl, function(err, res) {
-
-	if (err) {
-
-		console.log('DB CONNECTION FAILED: ' + err);
-	} else {
-		console.log('DB CONNECTION SUCCESS: ' + dbUrl);
-	}
-});
-
-var home = require( './routes/home' );
-var api = require( './routes/api' );
-var register = require( './routes/register' );
-var logIn = require( './routes/log-in' );
-var logOut = require( './routes/log-out' );
-var surveyEditor = require( './routes/survey-editor' );
-var surveyList = require( './routes/survey-list' );
+require('./server/models').connect(config.dbUri);
 
 var app = express();
 
@@ -55,6 +39,8 @@ app.use( sassMiddleware( { // this shitty plugin wont work properly
 	}
 } ) );
 app.use( express.static( path.join( __dirname, 'public' ) ) );
+app.use(express.static('./server/static/'));
+// app.use(express.static('./client/dist/'));
 
 // Express Session
 app.use(session({
@@ -64,8 +50,18 @@ app.use(session({
 	cookie: { maxAge: 60000 }
 }));
 app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.session());
 app.use(flash());
+
+// load passport strategies
+var localSignupStrategy = require('./server/passport/local-signup');
+var localLoginStrategy = require('./server/passport/local-login');
+passport.use('local-signup', localSignupStrategy);
+passport.use('local-login', localLoginStrategy);
+
+// pass the authorization checker middleware
+var authCheckMiddleware = require('./server/middleware/auth-check');
+app.use('/api', authCheckMiddleware);
 
 // Global Vars
 app.use(function (req, res, next) {
@@ -78,13 +74,11 @@ app.use(function (req, res, next) {
 	next();
 });
 
-app.use( '/', home );
-app.use( '/api', api );
-app.use( '/register', register );
-app.use( '/logIn', logIn );
-app.use( '/logOut', logOut );
-app.use( '/surveyEditor', surveyEditor );
-app.use( '/surveyList', surveyList );
+// routes
+var authRoutes = require('./server/routes/auth');
+var apiRoutes = require('./server/routes/api');
+app.use('/auth', authRoutes);
+app.use('/api', apiRoutes);
 
 // catch 404 and forward to error handler
 app.use( function ( req, res, next ) {
