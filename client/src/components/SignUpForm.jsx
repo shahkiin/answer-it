@@ -15,11 +15,16 @@ const SignUpForm = ({
                     <span className="error">{errors.summary}</span>
                 </div>
             }
+            {errors.email &&
+                <div className="row">
+                    <span className="error">{errors.email}</span>
+                </div>
+            }
             <input type="text" name="name" placeholder="username" onChange={onChange}/>
             <input type="text" name="email" placeholder="email" onChange={onChange}/>
             <input type="password" name="password" placeholder="password" onChange={onChange}/>
             <input type="submit" value="Create New Account" />
-            <span>Already have an account? <Link to={'/login'}>Log in</Link></span>
+            <div className="bottom-text">Already have an account?<Link className="button" to={'/login'}>Log in</Link></div>
         </form>
     </div>
 );

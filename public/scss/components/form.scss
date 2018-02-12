@@ -51,5 +51,16 @@
 				color: $color-primary;
 			}
 		}
+
+		.bottom-text {
+
+			text-align: center;
+			margin-top: 40px;
+
+			.button {
+
+				margin-left: 20px;
+			}
+		}
 	}
 }

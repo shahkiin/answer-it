@@ -39,9 +39,6 @@ export default class Header extends Component {
 					) : (
 						<ul>
 							<li>
-								<NavLink actionclassname="active" to="/questionlist">Question list</NavLink>
-							</li>
-							<li>
 								<NavLink actionclassname="active" to="/login">Log in</NavLink>
 							</li>
 							<li>

@@ -24,7 +24,7 @@ const LoginForm = ({
             <input type="text" name="email" placeholder="email" onChange={onChange}/>
             <input type="password" name="password" placeholder="password" onChange={onChange}/>
             <input type="submit" value="Log in" />
-            <span>Don't have an account? <Link to={'/signup'}>Create one</Link>.</span>
+            <div className="bottom-text">Don't have an account?<Link className="button" to={'/signup'}>Create one</Link></div>
         </form>
     </div>
 );

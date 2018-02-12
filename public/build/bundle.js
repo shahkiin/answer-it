@@ -2948,15 +2948,6 @@ var Header = function (_Component) {
 							null,
 							_react2.default.createElement(
 								_reactRouterDom.NavLink,
-								{ actionclassname: 'active', to: '/questionlist' },
-								'Question list'
-							)
-						),
-						_react2.default.createElement(
-							'li',
-							null,
-							_react2.default.createElement(
-								_reactRouterDom.NavLink,
 								{ actionclassname: 'active', to: '/login' },
 								'Log in'
 							)
@@ -4117,15 +4108,14 @@ var LoginForm = function LoginForm(_ref) {
             _react2.default.createElement('input', { type: 'password', name: 'password', placeholder: 'password', onChange: onChange }),
             _react2.default.createElement('input', { type: 'submit', value: 'Log in' }),
             _react2.default.createElement(
-                'span',
-                null,
-                'Don\'t have an account? ',
+                'div',
+                { className: 'bottom-text' },
+                'Don\'t have an account?',
                 _react2.default.createElement(
                     _reactRouterDom.Link,
-                    { to: '/signup' },
+                    { className: 'button', to: '/signup' },
                     'Create one'
-                ),
-                '.'
+                )
             )
         )
     );
@@ -4416,17 +4406,26 @@ var SignUpForm = function SignUpForm(_ref) {
                     errors.summary
                 )
             ),
+            errors.email && _react2.default.createElement(
+                'div',
+                { className: 'row' },
+                _react2.default.createElement(
+                    'span',
+                    { className: 'error' },
+                    errors.email
+                )
+            ),
             _react2.default.createElement('input', { type: 'text', name: 'name', placeholder: 'username', onChange: onChange }),
             _react2.default.createElement('input', { type: 'text', name: 'email', placeholder: 'email', onChange: onChange }),
             _react2.default.createElement('input', { type: 'password', name: 'password', placeholder: 'password', onChange: onChange }),
             _react2.default.createElement('input', { type: 'submit', value: 'Create New Account' }),
             _react2.default.createElement(
-                'span',
-                null,
-                'Already have an account? ',
+                'div',
+                { className: 'bottom-text' },
+                'Already have an account?',
                 _react2.default.createElement(
                     _reactRouterDom.Link,
-                    { to: '/login' },
+                    { className: 'button', to: '/login' },
                     'Log in'
                 )
             )

@@ -44,7 +44,7 @@ html {
   border: 2px solid #b40000;
   background-color: #fff;
   color: #404040;
-  padding: 10px 5px;
+  padding: 5px 10px;
   border-radius: 25px;
   font-weight: bold;
   display: inline-block;
@@ -189,6 +189,8 @@ button {
           margin: 0;
           margin-top: 20px;
           font-weight: bold; }
+        .answer-it main .home .welcome .button {
+          margin-top: 20px; }
     .answer-it main .question-list {
       margin-top: 30px;
       text-align: left; }
@@ -309,6 +311,11 @@ button {
             font-size: 0.8em;
             font-weight: bold;
             color: #b40000; }
+        .answer-it main .form form .bottom-text {
+          text-align: center;
+          margin-top: 40px; }
+          .answer-it main .form form .bottom-text .button {
+            margin-left: 20px; }
   .answer-it .section-content {
     max-width: 980px;
     margin: auto;
